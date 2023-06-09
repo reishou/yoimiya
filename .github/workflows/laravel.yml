@@ -9,14 +9,13 @@ on:
 
 jobs:
   laravel-tests:
-
+    timeout-minutes: 30
     runs-on: ubuntu-latest
-
     steps:
-      - uses: shivammathur/setup-php@v2
+      - uses: shivammathur/setup-php@c5fc0d8281aba02c7fda07d3a70cc5371548067d
         with:
           php-version: '8.2'
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
         # TODO: cache composer
@@ -25,7 +24,7 @@ jobs:
 #        run: |
 #          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
       - name: Install Dependencies
-        run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 #        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 #      - name: Generate key
 #        run: php artisan key:generate
