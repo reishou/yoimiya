@@ -1,11 +1,13 @@
-name: Laravel
+name: Yoimiya Workflow
 
 on:
   pull_request:
-    branches: [
-      "master",
-      "develop",
-    ]
+    branches:
+      - master
+      - develop
+  push:
+    branches:
+      - develop
 
 jobs:
   laravel-tests:
